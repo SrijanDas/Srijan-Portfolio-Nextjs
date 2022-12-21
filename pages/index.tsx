@@ -3,7 +3,7 @@ import type { Container, Engine } from "tsparticles-engine";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import { options } from "../config/particles-config";
-import { About, Header, Hero, WorkExperience } from "../components";
+import { About, Header, Hero, Skills, WorkExperience } from "../components";
 
 export default function Home() {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -44,9 +44,12 @@ export default function Home() {
         <section id="experience" className="snap-center">
           <WorkExperience />
         </section>
-        {/* <Skills /> */}
+        <section id="skills" className="snap-start">
+          <Skills />
+        </section>
+
         {/* <Projects /> */}
-        {/* <Experience /> */}
+
         {/* <Contact /> */}
       </div>
     </>
