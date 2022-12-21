@@ -15,7 +15,7 @@ function Hero({}: Props) {
     <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden ">
       <img
         className="relative rounded-full h-32 w-32 mx-auto object-cover"
-        src="/my-image.jpg"
+        src="/images/my-image.jpg"
         alt="my-image"
       />
       <div className="z-20">

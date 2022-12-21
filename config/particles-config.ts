@@ -330,7 +330,7 @@ export const options: Object = {
         factor: 1000,
       },
       limit: 0,
-      value: 100,
+      value: 50, // changes the number of particles : DEFAULT: 100
     },
     opacity: {
       random: {
