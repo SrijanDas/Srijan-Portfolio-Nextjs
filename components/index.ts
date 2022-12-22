@@ -3,4 +3,5 @@ import Hero from "./Hero"
 import About from "./About";
 import WorkExperience from "./WorkExperience"
 import Skills from "./Skills";
-export {Header, Hero, About, Skills, WorkExperience}
+import Projects from "./Projects";
+export {Header, Hero, About, Projects, Skills,WorkExperience}
