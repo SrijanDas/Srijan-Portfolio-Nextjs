@@ -5,6 +5,7 @@ import { loadFull } from "tsparticles";
 import { options } from "../config/particles-config";
 import {
   About,
+  Contact,
   Header,
   Hero,
   Projects,
@@ -14,7 +15,7 @@ import {
 
 export default function Home() {
   const particlesInit = useCallback(async (engine: Engine) => {
-    console.log(engine);
+    // console.log(engine);
 
     // you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -24,7 +25,7 @@ export default function Home() {
 
   const particlesLoaded = useCallback(
     async (container: Container | undefined) => {
-      await console.log(container);
+      // await console.log(container);
     },
     []
   );
@@ -39,7 +40,8 @@ export default function Home() {
       />
       <div
         className="text-white h-screen
-    snap-y snap-mandatory overflow-scroll"
+    snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0
+   scrollbar-thin scrollbar-track-blue-400/20 scrollbar-thumb-[#F7AB0A]/80"
       >
         <Header />
         <section id="hero" className="snap-center">
@@ -57,8 +59,9 @@ export default function Home() {
         <section id="projects" className="snap-start">
           <Projects />
         </section>
-
-        {/* <Contact /> */}
+        <section id="contact" className="snap-start">
+          <Contact />
+        </section>
       </div>
     </>
   );
