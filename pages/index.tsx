@@ -12,6 +12,8 @@ import {
   Skills,
   WorkExperience,
 } from "../components";
+import Link from "next/link";
+import { ArrowUpCircleIcon } from "@heroicons/react/24/solid";
 
 export default function Home() {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -62,23 +64,14 @@ export default function Home() {
         <section id="contact" className="snap-start">
           <Contact />
         </section>
+        {/* <Link href="#hero">
+          <footer className="sicky bottom-5 w-full cursor-pointer absolute">
+            <div className="flex items-center justify-center">
+              <ArrowUpCircleIcon className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer animate-bounce" />
+            </div>
+          </footer>
+        </Link> */}
       </div>
     </>
   );
-}
-
-{
-  /* <h1>Hello, World!</h1>
-            <h1>I'm Srijan.</h1>
-            <p className="bio">
-              Computer Science Engineering Grad(2022) from{" "}
-              <a href="https://www.galgotiasuniversity.edu.in/" target="_blank">
-                Galgotias
-              </a>
-              , India. 
-              I like to work with TS, JS and it's various frameworks. Python is
-              my 2nd language of choice. I have built many projects on AI-ML.
-              This website shows my contact details, past experience along with
-              some of the projects that I have worked on.
-            </p> */
 }
