@@ -14,23 +14,40 @@ import {
 } from "../components";
 import Link from "next/link";
 import { ArrowUpCircleIcon } from "@heroicons/react/24/solid";
+import { GetStaticProps } from "next";
+import { Experience, PageInfo, Project, Skill, Social } from "../typings";
+import {
+  fetchExperience,
+  fetchPageInfo,
+  fetchProjects,
+  fetchSkills,
+  fetchSocials,
+} from "../utils";
 
-export default function Home() {
+type Props = {
+  pageInfo: PageInfo;
+  experiences: Experience[];
+  skills: Skill[];
+  projects: Project[];
+  socials: Social[];
+};
+
+export default function Home({
+  pageInfo,
+  experiences,
+  skills,
+  projects,
+  socials,
+}: Props) {
   const particlesInit = useCallback(async (engine: Engine) => {
-    // console.log(engine);
-
-    // you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
-    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-    // starting from v2 you can add only the features you need reducing the bundle size
     await loadFull(engine);
   }, []);
 
   const particlesLoaded = useCallback(
-    async (container: Container | undefined) => {
-      // await console.log(container);
-    },
+    async (container: Container | undefined) => {},
     []
   );
+
   return (
     <>
       <Particles
@@ -45,21 +62,21 @@ export default function Home() {
     snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0
    scrollbar-thin scrollbar-track-blue-400/20 scrollbar-thumb-[#F7AB0A]/80"
       >
-        <Header />
+        <Header socials={socials} />
         <section id="hero" className="snap-center">
-          <Hero />
+          <Hero pageInfo={pageInfo} />
         </section>
         <section id="about" className="snap-center">
-          <About />
+          <About pageInfo={pageInfo} />
         </section>
         <section id="experience" className="snap-center">
-          <WorkExperience />
+          <WorkExperience experiences={experiences} />
         </section>
         <section id="skills" className="snap-start">
-          <Skills />
+          <Skills skills={skills} />
         </section>
         <section id="projects" className="snap-start">
-          <Projects />
+          <Projects projects={projects} />
         </section>
         <section id="contact" className="snap-start">
           <Contact />
@@ -75,3 +92,23 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const pageInfo: PageInfo = await fetchPageInfo();
+  const experiences: Experience[] = await fetchExperience();
+  const skills: Skill[] = await fetchSkills();
+  const projects: Project[] = await fetchProjects();
+  const socials = await fetchSocials();
+
+  return {
+    props: {
+      pageInfo,
+      experiences,
+      skills,
+      projects,
+      socials,
+    },
+
+    revalidate: 10,
+  };
+};

@@ -1,4 +1,4 @@
-export const options: Object = {
+export const options: any = {
   autoPlay: true,
   background: {
     color: {

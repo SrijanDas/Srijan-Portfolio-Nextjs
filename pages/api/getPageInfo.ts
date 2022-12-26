@@ -3,10 +3,7 @@ import {groq} from "next-sanity"
 import { sanityClient } from "../../config/sanity"
 import { PageInfo } from "../../typings"
 
-const query = groq`*[_type == "pageInfo"]{
-  ...,
-  socials[] ->
-}`
+const query = groq`*[_type == "pageInfo"][0]`
 
 type Data = {
   pageInfo : PageInfo

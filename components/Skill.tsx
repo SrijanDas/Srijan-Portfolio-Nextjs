@@ -1,25 +1,31 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Skill } from "../typings";
+import { urlFor } from "../config/sanity";
+import Tooltip from "./Tooltip";
 
 type Props = {
   directionLeft: boolean;
+  skill: Skill;
 };
 
-function Skill({ directionLeft }: Props) {
+function Skill({ directionLeft = false, skill }: Props) {
   return (
     <div className="group relative flex">
-      <motion.img
-        initial={{
-          x: directionLeft ? -200 : 200,
-          opacity: 0,
-        }}
-        transition={{ duration: 1 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        src="https://cdn.dribbble.com/users/528264/screenshots/3140440/firebase_logo.png"
-        className="rounded-full border-2 border-gray-500 object-cover
-        w-24 h-24 md:w-28 md:h-28 xl:w-32 xl:h-32 bg-gray-300 bg-opacity-40"
-      />
+      <Tooltip text={skill.title}>
+        <motion.img
+          initial={{
+            x: directionLeft ? -200 : 200,
+            opacity: 0,
+          }}
+          transition={{ duration: 1 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          src={skill?.image ? urlFor(skill.image).url() : ""}
+          className="rounded-full border-2 border-gray-500 object-contain
+        w-20 h-20  bg-gray-500 bg-opacity-20 cursor-pointer"
+        />
+      </Tooltip>
     </div>
   );
 }

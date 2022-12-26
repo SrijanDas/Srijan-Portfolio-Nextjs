@@ -35,6 +35,7 @@ export interface Social extends SanityBody {
 export interface Technology extends SanityBody {
     _type: "skill";
     title: string;
+    image: Image;
 
 }
 
@@ -46,7 +47,7 @@ export interface Skill extends SanityBody {
 
 export interface Experience extends SanityBody {
     _type:"experience";
-    company: string;
+    companyName: string;
     companyImage: Image;
     dateStarted: date;
     dateEnded: date;

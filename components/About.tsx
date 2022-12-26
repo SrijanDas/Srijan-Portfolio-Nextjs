@@ -1,9 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { PageInfo } from "../typings";
+import { urlFor } from "../config/sanity";
 
-type Props = {};
+type Props = { pageInfo: PageInfo };
 
-function About({}: Props) {
+function About({ pageInfo }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -25,22 +27,20 @@ function About({}: Props) {
         transition={{ duration: 1.2 }}
         whileInView={{ x: 0, opacity: 1 }}
         viewport={{ once: true }}
-        src="/images/my-image.jpg"
+        src={urlFor(pageInfo?.profilePicture).url()}
         className="-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 object-cover rounded-full md:rounded-lg md:w-64 md:h-95
         xl:w-[400px] xl:h-[400px]"
       />
-      <div className="space-y-10 px-0 md:px-10">
-        <h4 className="text-4xl font-semibold">
-          Here is a{" "}
-          <span className="underline decoration-blue-600">little</span>{" "}
-          background
-        </h4>
-        <p className="text-base">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis ratione
-          officia doloribus atque aperiam excepturi alias eveniet, rerum
-          necessitatibus dolorem error vel hic minima cum.
-        </p>
-      </div>
+      {pageInfo?.backgroundInformation && (
+        <div className="space-y-10 px-0 md:px-10">
+          <h4 className="text-4xl font-semibold">
+            Here is a{" "}
+            <span className="underline decoration-blue-600">little</span>{" "}
+            background
+          </h4>
+          <p className="text-base">{pageInfo.backgroundInformation}</p>
+        </div>
+      )}
     </motion.div>
   );
 }

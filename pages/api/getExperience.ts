@@ -3,7 +3,7 @@ import {groq} from "next-sanity"
 import { sanityClient } from "../../config/sanity"
 import { Experience } from "../../typings"
 
-const query = groq`*[_type == "experience"]{
+const query = groq`*[_type == "experience"] | order(dateStarted desc){
   ...,
   technologies[] ->
 }`

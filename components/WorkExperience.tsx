@@ -1,9 +1,10 @@
 import React from "react";
 import ExperienceCard from "./ExperienceCard";
+import { Experience } from "../typings";
 
-type Props = {};
+type Props = { experiences: Experience[] };
 
-function WorkExperience({}: Props) {
+function WorkExperience({ experiences }: Props) {
   return (
     <div
       className="h-screen flex relative overflow-hidden
@@ -21,9 +22,9 @@ function WorkExperience({}: Props) {
         className="w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory
       scrollbar-thin scrollbar-track-blue-400/20 scrollbar-thumb-[#F7AB0A]/80"
       >
-        <ExperienceCard />
-        <ExperienceCard />
-        <ExperienceCard />
+        {experiences?.map((e) => (
+          <ExperienceCard key={e._id} experience={e} />
+        ))}
       </div>
     </div>
   );
