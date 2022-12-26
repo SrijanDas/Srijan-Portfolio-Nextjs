@@ -30,16 +30,16 @@ function ExperienceCard({ experience }: Props) {
         <p className="font-bold text-2xl mt-1">{experience?.companyName}</p>
         <div className="flex space-x-2 my-2">
           {experience?.technologies?.length &&
-            experience.technologies.map((tech, i) => (
-              <Tooltip text={tech.title}>
+            experience.technologies.map((tech: Technology, i) => (
+              <Tooltip key={i} text={tech.title}>
                 <img
-                  key={i}
                   src={
                     tech?.image
                       ? urlFor(tech.image).url()
                       : "/images/default-company-logo.jpg"
                   }
                   className="h-10 w-10 rounded-full object-contain"
+                  alt="tech"
                 />
               </Tooltip>
             ))}

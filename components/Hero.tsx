@@ -3,6 +3,7 @@ import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import { PageInfo } from "../typings";
 import { urlFor } from "../config/sanity";
+import Image from "next/image";
 
 type Props = { pageInfo: PageInfo };
 

@@ -33,7 +33,9 @@ function Contact({}: Props) {
       <div className="flex flex-col space-y-5">
         <h4 className="text-3xl mt-32 font-semibold text-center">
           I have got just what you need. <br className="md:hidden" />
-          <span className="decoration-[#F7AB0A]/50 underline">Let's Talk.</span>
+          <span className="decoration-[#F7AB0A]/50 underline">
+            Let&apos;s Talk.
+          </span>
         </h4>
         <div className="flex items-center justify-center space-x-5">
           <PhoneIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
