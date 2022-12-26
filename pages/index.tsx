@@ -33,11 +33,11 @@ type Props = {
 };
 
 export default function Home({
-  pageInfo,
-  experiences,
-  skills,
-  projects,
-  socials,
+  pageInfo = Object(defaultPageInfo),
+  experiences = [],
+  skills = [],
+  projects = [],
+  socials = [],
 }: Props) {
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
@@ -98,7 +98,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const experiences: Experience[] = await fetchExperience();
   const skills: Skill[] = await fetchSkills();
   const projects: Project[] = await fetchProjects();
-  const socials = await fetchSocials();
+  const socials: Social[] = await fetchSocials();
 
   return {
     props: {
@@ -111,4 +111,21 @@ export const getStaticProps: GetStaticProps = async () => {
 
     revalidate: 10,
   };
+};
+
+const defaultPageInfo = {
+  _type: "pageInfo",
+  address: "street, city, state, country",
+  backgroundInformation:
+    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum, beatae?",
+  email: "hello@example.com",
+  role: "Full Stack Developer",
+  heroImage: "",
+  profilePicture: "",
+  name: "Hello World",
+  phoneNumber: "+111111",
+  _createdAt: Date.now(),
+  _id: "id",
+  _rev: "rev",
+  _updatedAt: Date.now(),
 };
