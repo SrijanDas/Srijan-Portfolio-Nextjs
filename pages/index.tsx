@@ -23,6 +23,7 @@ import {
   fetchSkills,
   fetchSocials,
 } from "../utils";
+import Head from "next/head";
 
 type Props = {
   pageInfo: PageInfo;
@@ -33,11 +34,11 @@ type Props = {
 };
 
 export default function Home({
-  pageInfo = Object(defaultPageInfo),
-  experiences = [],
-  skills = [],
-  projects = [],
-  socials = [],
+  pageInfo,
+  experiences,
+  skills,
+  projects,
+  socials,
 }: Props) {
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
@@ -50,6 +51,7 @@ export default function Home({
 
   return (
     <>
+      <Head>{`${pageInfo.name}'s Portfolio`}</Head>
       <Particles
         // className="-z-50"
         id="tsparticles"
@@ -111,21 +113,4 @@ export const getStaticProps: GetStaticProps = async () => {
 
     revalidate: 10,
   };
-};
-
-const defaultPageInfo = {
-  _type: "pageInfo",
-  address: "street, city, state, country",
-  backgroundInformation:
-    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum, beatae?",
-  email: "hello@example.com",
-  role: "Full Stack Developer",
-  heroImage: "",
-  profilePicture: "",
-  name: "Hello World",
-  phoneNumber: "+111111",
-  _createdAt: Date.now(),
-  _id: "id",
-  _rev: "rev",
-  _updatedAt: Date.now(),
 };

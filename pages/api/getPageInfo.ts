@@ -2,6 +2,7 @@ import type {NextApiRequest, NextApiResponse} from "next"
 import {groq} from "next-sanity"
 import { sanityClient } from "../../config/sanity"
 import { PageInfo } from "../../typings"
+import { defaultPageInfo } from "../../config/defaultProps"
 
 const query = groq`*[_type == "pageInfo"][0]`
 
@@ -14,7 +15,15 @@ export default async function handler(
     res: NextApiResponse<Data>
   ) {
 
-    const pageInfo: PageInfo = await sanityClient.fetch(query)
-    res.status(200).json({ pageInfo })
+    try {
+      const pageInfo: PageInfo = await sanityClient.fetch(query)
+      res.status(200).json({ pageInfo })
+
+
+    } catch (error) {
+      res.status(200).json({ pageInfo: Object(defaultPageInfo) })
+
+      
+    }
   }
   

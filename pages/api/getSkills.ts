@@ -14,7 +14,12 @@ export default async function handler(
     res: NextApiResponse<Data>
   ) {
 
-    const skills: Skill[] = await sanityClient.fetch(query)
-    res.status(200).json({ skills })
+    try {
+      const skills: Skill[] = await sanityClient.fetch(query)
+      res.status(200).json({ skills })
+    } catch (error) {
+      res.status(200).json({ skills: [] })
+      
+    }
   }
   

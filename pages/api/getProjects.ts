@@ -17,7 +17,13 @@ export default async function handler(
     res: NextApiResponse<Data>
   ) {
 
-    const projects: Project[] = await sanityClient.fetch(query)
-    res.status(200).json({ projects })
+    try {
+      const projects: Project[] = await sanityClient.fetch(query)
+      res.status(200).json({ projects })
+    } catch (error) {
+      res.status(200).json({ projects: [] })
+
+      
+    }
   }
   

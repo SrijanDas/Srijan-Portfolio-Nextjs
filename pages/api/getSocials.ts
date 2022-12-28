@@ -14,7 +14,12 @@ export default async function handler(
     res: NextApiResponse<Data>
   ) {
 
-    const socials: Social[] = await sanityClient.fetch(query)
-    res.status(200).json({ socials })
+    try {
+      const socials: Social[] = await sanityClient.fetch(query)
+      res.status(200).json({ socials })
+    } catch (error) {
+      res.status(200).json({ socials: [] })
+      
+    }
   }
   
