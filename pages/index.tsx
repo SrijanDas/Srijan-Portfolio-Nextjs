@@ -14,7 +14,7 @@ import {
 } from "../components";
 import Link from "next/link";
 import { ArrowUpCircleIcon } from "@heroicons/react/24/solid";
-import { GetStaticProps } from "next";
+import { GetStaticProps, GetServerSideProps } from "next";
 import { Experience, PageInfo, Project, Skill, Social } from "../typings";
 import {
   fetchExperience,
@@ -95,7 +95,7 @@ export default function Home({
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const pageInfo: PageInfo = await fetchPageInfo();
   const experiences: Experience[] = await fetchExperience();
   const skills: Skill[] = await fetchSkills();
@@ -111,6 +111,6 @@ export const getStaticProps: GetStaticProps = async () => {
       socials,
     },
 
-    revalidate: 10,
+    // revalidate: 10,
   };
 };
